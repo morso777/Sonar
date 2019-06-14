@@ -9,34 +9,34 @@ import static org.junit.Assert.*;
 
 public class CasosDePrueba {
 
-	private static By Producto  = By.xpath ("//*[@id=\"bodyContent\"]/div/div[2]/table/tbody/tr[1]/td[1]/a[1]/img");
-	private static By Producto2 = By.xpath ("//*[@id=\"bodyContent\"]/div/div[2]/table/tbody/tr[3]/td[3]/a[1]/img");
-	private static By Carrito   = By.xpath ("//*[@id=\"tdb4\"]/span[2]");
+	private static By producto  = By.xpath ("//*[@id=\"bodyContent\"]/div/div[2]/table/tbody/tr[1]/td[1]/a[1]/img");
+	private static By producto2 = By.xpath ("//*[@id=\"bodyContent\"]/div/div[2]/table/tbody/tr[3]/td[3]/a[1]/img");
+	private static By carrito   = By.xpath ("//*[@id=\"tdb4\"]/span[2]");
 	
-	private static String CantidadComprar  = "2";
-	private static String CantidadChecar   = "2";
-	private static String CantidadComprar3 = "3";
-	private static String CantidadChecar3  = "3";
+	private static String cantidadcomprar  = "2";
+	private static String cantidadchecar   = "2";
+	private static String cantidadcomprar3 = "3";
+	private static String cantidadchecar3  = "3";
 	
-	private static By Update   = By.xpath ("//*[@id=\"tdb4\"]/span[2]");
-	private static By CheckOut = By.xpath("//*[@id=\"tdb5\"]/span[2]");
+	private static By update   = By.xpath ("//*[@id=\"tdb4\"]/span[2]");
+	private static By checkout = By.xpath("//*[@id=\"tdb5\"]/span[2]");
 	
-	private static By Correo     = By.name("email_address");
-	private static By Password   = By.name("password");
-	private static By SignIn     = By.xpath("//*[@id=\"tdb1\"]/span[2]");
-	private static By LogOff    = By.xpath("//*[@id=\"tdb4\"]/span");
-	private static By Continuar  = By.xpath("//*[@id=\"tdb6\"]/span[2]");
-	private static By Continuar2  = By.xpath("//*[@id=\"tdb4\"]/span[2]");
+	private static By correo     = By.name("email_address");
+	private static By password   = By.name("password");
+	private static By signin     = By.xpath("//*[@id=\"tdb1\"]/span[2]");
+	private static By logoff    = By.xpath("//*[@id=\"tdb4\"]/span");
+	private static By continuar  = By.xpath("//*[@id=\"tdb6\"]/span[2]");
+	private static By continuar2  = By.xpath("//*[@id=\"tdb4\"]/span[2]");
 	
 	
-	private static By MetodoPago = By.ByXPath.xpath("//table[6]//tbody[1]//tr[1]//td[1]");
-	private static By Pagar      = By.xpath("//*[@id=\"tdb5\"]/span");
+	private static By metodopago = By.ByXPath.xpath("//table[6]//tbody[1]//tr[1]//td[1]");
+	private static By pagar      = By.xpath("//*[@id=\"tdb5\"]/span");
 	
-	private static By Cantidad    = By.name("cart_quantity[]");
-	private static By Encabezado  = By.tagName("h1");
-	private static String TextoEsperado="Your Order Has Been Processed!";
+	private static By cantidad    = By.name("cart_quantity[]");
+	private static By encabezado  = By.tagName("h1");
+	private static String textoesperado="Your Order Has Been Processed!";
 	
-	private static void EsperarTiempo (int tiempo) throws InterruptedException{
+	private static void esperarTiempo (int tiempo) throws InterruptedException{
 		Thread.sleep(tiempo);		
 	}
 	
@@ -53,80 +53,80 @@ public class CasosDePrueba {
 	driver.get("https://demo.oscommerce.com/");
 	
 	//Samsung
-	WebElement SeleccionarProducto=driver.findElement (Producto);
-	SeleccionarProducto.click();
-	WebElement AgregarCarrito=driver.findElement (Carrito);
-	AgregarCarrito.click();
+	WebElement seleccionarproducto=driver.findElement (producto);
+	seleccionarproducto.click();
+	WebElement agregarcarrito=driver.findElement (carrito);
+	agregarcarrito.click();
 	
-	EsperarTiempo (1000);
+	esperarTiempo (1000);
 				
-	WebElement MeterCantidad=driver.findElement(Cantidad);
-	MeterCantidad.clear();
-	MeterCantidad.sendKeys(CantidadComprar);
-	assertEquals(MeterCantidad.getAttribute("value"),CantidadChecar);
-	WebElement Actualizar=driver.findElement (Update);
-	Actualizar.click();
-	driver.findElement(CheckOut).click();		
+	WebElement metercantidad=driver.findElement(cantidad);
+	metercantidad.clear();
+	metercantidad.sendKeys(cantidadcomprar);
+	assertEquals(metercantidad.getAttribute("value"),cantidadchecar);
+	WebElement actualizar=driver.findElement (update);
+	actualizar.click();
+	driver.findElement(checkout).click();		
 	
-	EsperarTiempo (1000);
+	esperarTiempo (1000);
 	
-	driver.findElement(Correo).sendKeys("hiran.testlio@gmail.com");
-	driver.findElement(Password).sendKeys("12345");	
-	driver.findElement(SignIn).click();
+	driver.findElement(correo).sendKeys("hiran.testlio@gmail.com");
+	driver.findElement(password).sendKeys("12345");	
+	driver.findElement(signin).click();
 	
-	EsperarTiempo (1000);
+	esperarTiempo (1000);
 	
-	driver.findElement(Continuar).click();	
-	EsperarTiempo (1000);
+	driver.findElement(continuar).click();	
+	esperarTiempo (1000);
 		
-	driver.findElement(MetodoPago).click();		
-	driver.findElement(Continuar).click();
-	EsperarTiempo (1000);
+	driver.findElement(metodopago).click();		
+	driver.findElement(continuar).click();
+	esperarTiempo (1000);
 
-	driver.findElement(Pagar).click();				
-	WebElement BuscarTexto = driver.findElement(Encabezado);
-	assertEquals(BuscarTexto.getText(), TextoEsperado);
+	driver.findElement(pagar).click();				
+	WebElement buscartexto = driver.findElement(encabezado);
+	assertEquals(buscartexto.getText(), textoesperado);
 	System.out.println("Compra Samsung Satisfactoria");
 	
-	driver.findElement(LogOff).click();
-	EsperarTiempo (1000);
-	driver.findElement(Continuar2).click();
+	driver.findElement(logoff).click();
+	esperarTiempo (1000);
+	driver.findElement(continuar2).click();
 	
 	
 	//Beloved
 
-	WebElement SeleccionarProducto2=driver.findElement (Producto2);
-	SeleccionarProducto2.click();	
+	WebElement seleccionarproducto2=driver.findElement (producto2);
+	seleccionarproducto2.click();	
 	
-	WebElement AgregarCarrito2=driver.findElement (Carrito);
-	AgregarCarrito2.click();
-	EsperarTiempo (1000);
+	WebElement agregarcarrito2=driver.findElement (carrito);
+	agregarcarrito2.click();
+	esperarTiempo (1000);
 				
-	WebElement MeterCantidad3=driver.findElement(Cantidad);
-	MeterCantidad3.clear();
-	MeterCantidad3.sendKeys(CantidadComprar3);
-	assertEquals(MeterCantidad3.getAttribute("value"),CantidadChecar3);
-	WebElement Actualizar2=driver.findElement (Update);
-	Actualizar2.click();
-	driver.findElement(CheckOut).click();		
-	EsperarTiempo (1000);
+	WebElement metercantidad3=driver.findElement(cantidad);
+	metercantidad3.clear();
+	metercantidad3.sendKeys(cantidadcomprar3);
+	assertEquals(metercantidad3.getAttribute("value"),cantidadchecar3);
+	WebElement actualizar2=driver.findElement (update);
+	actualizar2.click();
+	driver.findElement(checkout).click();		
+	esperarTiempo (1000);
 	
-	driver.findElement(Correo).sendKeys("hiran.testlio@gmail.com");
-	driver.findElement(Password).sendKeys("12345");	
-	driver.findElement(SignIn).click();
-	EsperarTiempo (1000);
+	driver.findElement(correo).sendKeys("hiran.testlio@gmail.com");
+	driver.findElement(password).sendKeys("12345");	
+	driver.findElement(signin).click();
+	esperarTiempo (1000);
 	
-	driver.findElement(Continuar).click();	
-	EsperarTiempo (1000);
+	driver.findElement(continuar).click();	
+	esperarTiempo (1000);
 	
-	driver.findElement(MetodoPago).click();		
-	driver.findElement(Continuar).click();
+	driver.findElement(metodopago).click();		
+	driver.findElement(continuar).click();
 	
-	EsperarTiempo (1000);
+	esperarTiempo (1000);
 
-	driver.findElement(Pagar).click();				
-	WebElement BuscarTexto2 = driver.findElement(Encabezado);
-	assertEquals(BuscarTexto2.getText(), TextoEsperado);
+	driver.findElement(pagar).click();				
+	WebElement buscartexto2 = driver.findElement(encabezado);
+	assertEquals(buscartexto2.getText(), textoesperado);
 	System.out.println("Successfully");	
 
 	System.out.println("Compra Beloved Satisfactoria");
